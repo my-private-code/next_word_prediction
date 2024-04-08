@@ -3,7 +3,7 @@ import torch
 import string
 
 from transformers import BertTokenizer, BertForMaskedLM
-bert_tokenizer = BertTokenizer.from_pretrained('bert-base-uncased') # 500M
+bert_tokenizer = BertTokenizer.from_pretrained('bert-base-uncased') # 500M, seems best model in my tests
 bert_model = BertForMaskedLM.from_pretrained('bert-base-uncased').eval()
 
 # from transformers import BartTokenizer, BartForConditionalGeneration
