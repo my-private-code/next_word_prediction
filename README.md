@@ -15,9 +15,12 @@ The second variant is necessary to include a <mask> token where you want the mod
 
 ### Running 
 
-```
+```sh
+python3 -m venv ven
+venv/bin/pip3 install -r requirements.txt
+venv/bin/python app.py
 cd web-app
-python app.py
+venv/bin/python app.py
 ```
 
 Open your browser http://localhost:8000

@@ -14,10 +14,6 @@ from transformers import ElectraTokenizer, ElectraForMaskedLM
 electra_tokenizer = ElectraTokenizer.from_pretrained('google/electra-small-generator')
 electra_model = ElectraForMaskedLM.from_pretrained('google/electra-small-generator').eval()
 
-from transformers import RobertaTokenizer, RobertaForMaskedLM
-roberta_tokenizer = RobertaTokenizer.from_pretrained('roberta-base') # 500M
-roberta_model = RobertaForMaskedLM.from_pretrained('roberta-base').eval()
-
 top_k = 10
 
 
@@ -62,14 +58,7 @@ def get_all_predictions(text_sentence, top_clean=5):
         predict = electra_model(input_ids)[0]
     electra = decode(electra_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
-    # # ========================= ROBERTA =================================
-    input_ids, mask_idx = encode(roberta_tokenizer, text_sentence, add_special_tokens=True)
-    with torch.no_grad():
-        predict = roberta_model(input_ids)[0]
-    roberta = decode(roberta_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
-
     return {'bert': bert,
             # 'bart': bart,
-            'electra': electra,
-            'roberta': roberta
+            'electra': electra
             }
