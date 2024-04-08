@@ -1,4 +1,6 @@
 # Next word prediction
+Updated from https://github.com/renatoviolin/next_word_prediction
+
 Simple application using transformers models to predict next word or a masked word in a sentence.
 
 The purpose is to demo and compare the main models available up to date.
@@ -24,5 +26,7 @@ venv/bin/python app.py
 ```
 
 Open your browser http://localhost:8000
+
+bart模型我刚测试了，貌似也不错。但是内存占用比较大，启用后到了2.24G内存，api响应也变慢了一点
 
 
