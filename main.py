@@ -14,6 +14,10 @@ from transformers import ElectraTokenizer, ElectraForMaskedLM
 electra_tokenizer = ElectraTokenizer.from_pretrained('google/electra-small-generator')
 electra_model = ElectraForMaskedLM.from_pretrained('google/electra-small-generator').eval()
 
+from transformers import AutoTokenizer, AutoModelForMaskedLM
+bert_tokenizer_cn = AutoTokenizer.from_pretrained("bert-base-chinese")
+bert_model_cn = AutoModelForMaskedLM.from_pretrained("bert-base-chinese").eval()
+
 top_k = 10
 
 
@@ -46,6 +50,13 @@ def get_all_predictions(text_sentence, top_clean=5):
         predict = bert_model(input_ids)[0]
     bert = decode(bert_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
+    # ========================= BERT =================================
+    print(text_sentence)
+    input_ids, mask_idx = encode(bert_tokenizer_cn, text_sentence)
+    with torch.no_grad():
+        predict = bert_model_cn(input_ids)[0]
+    bert_cn = decode(bert_tokenizer_cn, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
     # # ========================= BART =================================
     # input_ids, mask_idx = encode(bart_tokenizer, text_sentence, add_special_tokens=True)
     # with torch.no_grad():
@@ -59,6 +70,7 @@ def get_all_predictions(text_sentence, top_clean=5):
     electra = decode(electra_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
     return {'bert': bert,
+            'bert_cn': bert_cn,
             # 'bart': bart,
             'electra': electra
             }
