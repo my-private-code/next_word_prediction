@@ -28,3 +28,7 @@ Open your browser http://localhost:8000
 bart模型我刚测试了，貌似也不错。但是内存占用比较大，启用后到了2.24G内存，api响应也变慢了一点
 
 
+## 国内云服务（阿里云）部署本服务的问题及解决方案
+1. 安装torch可能失败，可以逐个单独安装：`venv/bin/pip3 install -U torch --no-cache-dir` --no-cache-dir 是关键
+2. 使用大语言模型国内镜像： HF_ENDPOINT=https://hf-mirror.com venv/bin/python app.py
+
