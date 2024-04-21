@@ -18,7 +18,7 @@ The second variant is necessary to include a <mask> token where you want the mod
 ### Running 
 
 ```sh
-python3 -m venv ven
+python3 -m venv venv
 venv/bin/pip3 install -r requirements.txt
 venv/bin/python app.py
 cd web-app
