@@ -21,8 +21,6 @@ The second variant is necessary to include a <mask> token where you want the mod
 python3 -m venv venv
 venv/bin/pip3 install -r requirements.txt
 venv/bin/python app.py
-cd web-app
-venv/bin/python app.py
 ```
 
 Open your browser http://localhost:8000
