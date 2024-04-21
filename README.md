@@ -23,7 +23,7 @@ venv/bin/pip3 install -r requirements.txt
 venv/bin/python app.py
 ```
 
-Open your browser http://localhost:8000
+Open your browser http://localhost:8080
 
 bart模型我刚测试了，貌似也不错。但是内存占用比较大，启用后到了2.24G内存，api响应也变慢了一点
 
