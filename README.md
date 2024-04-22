@@ -32,3 +32,5 @@ bart模型我刚测试了，貌似也不错。但是内存占用比较大，启�
 1. 安装torch可能失败，可以逐个单独安装：`venv/bin/pip3 install -U torch --no-cache-dir` --no-cache-dir 是关键
 2. 使用大语言模型国内镜像： HF_ENDPOINT=https://hf-mirror.com venv/bin/python app.py
 
+## todo
+优化重构：一次只响应一种语言(en/cn)的prediction计算，减少计算量和网络传输。
